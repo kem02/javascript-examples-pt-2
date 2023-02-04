@@ -2,6 +2,7 @@ const server = require("./http");
 const request = require("supertest");
 
 describe("Testing the server", () => {
+
     describe("Testing the root route", () => {
         it("/ should get back a 200", (done) => {
             request(server).get("/").expect(200).end((err) => {
@@ -15,26 +16,76 @@ describe("Testing the server", () => {
     })
 
     describe("Testing the /data route", () => {
-        it("/data should get back a 200", (done) => {
+        it("/should get back a 200", (done) => {
             request(server).get("/data").expect(200).end((err) => {
-                if(err){
+                if(err) {
                     throw err;
                 } else {
                     done();
-                } 
+                }
             })
-        });
+            
+        })
 
         it("/data should display my name", (done) => {
-           request(server).get("/data").expect(200).end((err, response) => {
-                if(err){
+            request(server).get("/data").expect(200).end((err, response) => {
+                if(err) {
                     throw err;
                 } else {
-                    // console.log(response.body.data.name);
-                    expect(response.body.data.name).toBe("jose");
-                    done();
-                } 
+                    console.log(response.body.data.name)
+                    expect(response.body.data.name).toBe("kevin")
+                    done()
+                }
             })
         })
     })
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// describe("Testing the server", () => {
+    
+
+//     describe("Testing the /data route", () => {
+//         it("/data should get back a 200", (done) => {
+//             request(server).get("/data").expect(200).end((err) => {
+//                 if(err){
+//                     throw err;
+//                 } else {
+//                     done();
+//                 } 
+//             })
+//         });
+
+//         it("/data should display my name", (done) => {
+//            request(server).get("/data").expect(200).end((err, response) => {
+//                 if(err){
+//                     throw err;
+//                 } else {
+//                     // console.log(response.body.data.name);
+//                     expect(response.body.data.name).toBe("jose");
+//                     done();
+//                 } 
+//             })
+//         })
+//     })
+// })
